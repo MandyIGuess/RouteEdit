@@ -178,7 +178,7 @@ class RouteEntryTable(QtWidgets.QTableWidget):
         QtWidgets.QTableWidget.__init__(self)
 
         # Setup Table Properties
-        self.setColumnCount(2)
+        self.setColumnCount(3)
         self.setAlternatingRowColors(True)
         self.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
 
@@ -188,6 +188,7 @@ class RouteEntryTable(QtWidgets.QTableWidget):
         header.setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
         self.setHorizontalHeaderItem(0, QtWidgets.QTableWidgetItem('Path'))
         self.setHorizontalHeaderItem(1, QtWidgets.QTableWidgetItem('Action'))
+        self.setHorizontalHeaderItem(2, QtWidgets.QTableWidgetItem('Flag'))
 
         # Hide Row Numbers
         self.verticalHeader().setVisible(False)
@@ -202,6 +203,7 @@ class RouteEntryTable(QtWidgets.QTableWidget):
             # Populate the new row with the contents of that entry in the array
             self.setItem(pos, 0, QtWidgets.QTableWidgetItem(dataArray[i][0]))  # Path
             self.setCellWidget(pos, 1, ActionEditor(dataArray[i][1]))          # Action
+            self.setItem(pos, 2, QtWidgets.QTableWidgetItem(dataArray[i][2]))  # Flag
             i += 1
 
     def addRow(self):
@@ -210,6 +212,7 @@ class RouteEntryTable(QtWidgets.QTableWidget):
         # Initialise the row
         self.setItem(self.currentRow()+1, 0, QtWidgets.QTableWidgetItem())  # Path
         self.setCellWidget(self.currentRow()+1, 1, ActionEditor())          # Action
+        self.setItem(self.currentRow()+1, 2, QtWidgets.QTableWidgetItem())  # Flag
 
     def delRow(self):
         self.removeRow(self.currentRow())
@@ -223,12 +226,12 @@ class RouteEntryTable(QtWidgets.QTableWidget):
             col = 0
             rowData = []
             # Iterate through each column for the current row
-            while col < 2:
+            while col < 3:
                 # Store the contents of the column
-                if col == 0:
-                    rowData.append(self.item(row, col).text())
-                else:
+                if col == 1:
                     rowData.append(self.cellWidget(row, col).getValue())
+                else:
+                    rowData.append(self.item(row, col).text())
                 col += 1
             # Store the contents of each row
             rowString = ','.join(rowData)

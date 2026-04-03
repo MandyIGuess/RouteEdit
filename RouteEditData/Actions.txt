@@ -14,3 +14,6 @@
 はしご左:Standard ladder facing left, used in World 5.
 はしご右:Standard ladder facing right, used in World 5.
 ツタ:Beanstalk climbing animation, used in World 7.
+スイッチブロック:"Switch block" - Unused, the behavior varies depending on the World 3 switch status. If the switch is active, the players will walk across the path, and will jump otherwise.
+雲:"Cloud" - Unused, just uses the standard walk animation.
+水:"Water" - Unused, just uses the standard walk animation.
